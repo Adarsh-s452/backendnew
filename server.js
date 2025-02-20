@@ -15,14 +15,13 @@ app.use(express.json());
 app.use('/uploads', express.static('uploads'));
 
 // Connect to MongoDB
-mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(process.env.MONGO_URI)
     .then(() => console.log('MongoDB Connected'))
     .catch(err => console.error('MongoDB connection error:', err));
 
 // Routes
 app.use('/movies', movieRoutes);
 app.get('/movies/getMovieById/:id', getMovieById);  // Use the getMovieById controller for this route
-app.use("/uploads", express.static(path.join(path.resolve(), "uploads")));
 
 
 const PORT = process.env.PORT || 5000;
